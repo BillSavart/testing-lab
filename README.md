@@ -1,5 +1,7 @@
 # Testing Lab
 
+![alt text](project-preview.png)
+
 ## Backend
 
 Fastify Server
