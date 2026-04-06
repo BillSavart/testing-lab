@@ -12,11 +12,7 @@ export const getTodos = async (): Promise<AxiosResponse<TodoResponse>> => {
 
 export const addTodo = async (todoBody: ITodo): Promise<AxiosResponse<ITodo>> => {
   try {
-    const newTodo = {
-      ...todoBody,
-      status: false
-    }
-    const todo = await axios.post(`/api/v1/todos`, newTodo)
+    const todo = await axios.post(`/api/v1/todos`, todoBody)
     return todo
   } catch (error) {
     console.error(`POST /api/v1/todos ERROR: ${error}`)

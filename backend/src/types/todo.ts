@@ -5,4 +5,4 @@ export type Todo = {
   status: boolean
 }
 
-export type TodoBody = Omit<Todo, 'id'>
+export type TodoBody = Omit<Todo, 'id' | 'status'>

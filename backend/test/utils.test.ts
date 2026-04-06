@@ -1,21 +1,21 @@
 import { describe, test, expect, it } from 'vitest'
 import { myCustomAdd, fabonacci } from '../src/utils/math'
-import { fail } from 'assert'
 
-describe('my testing playground', () => {
-  test('it works', () => {
-    const expected = true
-    const actual = false
-    expect(actual).toBe(expected)
-  })
-
-  describe('add function testing', () => {
+describe('math utils testing', () => {
+  describe('myCustomAdd testing', () => {
     it('should return 3 when add 1 and 2', () => {
-      expect(myCustomAdd(1, 2)).toBe(3)
+      // arrange
+      const a = 1
+      const b = 2
+
+      // act
+      const actual = myCustomAdd(a, b)
+
+      // assert
+      expect(actual).toBe(3)
     })
     it('should return 5 when add 2 and 3', () => {
-      // TODO: fix the test
-      fail('not implemented')
+      expect(myCustomAdd(2, 3)).toBe(5)
     })
   })
 
@@ -25,11 +25,11 @@ describe('my testing playground', () => {
     })
     it('should return 1 when n is 2', () => {
       // TODO: fix the test
-      fail('not implemented')
+      expect.fail('not implemented')
     })
     it('should return 2 when n is 3', () => {
       // TODO: fix the test
-      fail('not implemented')
+      expect.fail('not implemented')
     })
   })
 })
