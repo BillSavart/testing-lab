@@ -67,18 +67,44 @@ describe('Todo API Testing', () => {
 
   test('Given a valid ID and status, When receive a PUT /api/v1/todos/:id request, Then it should response the updated todo object', async () => {
     // arrange: mock the repo function to return an updated todo object
-
+    const id = '1'
+    const status = true
+    const updatedTodo: Todo = {
+      id,
+      name: 'todo 1',
+      description: 'description 1',
+      status
+    }
+    vi.spyOn(TodoRepo, 'updateTodoById').mockImplementation(async () => updatedTodo)
     // act: receive a PUT /api/v1/todos/:id request
-
+    const response = await server.inject({
+      method: 'PUT',
+      url: `/api/v1/todos/${id}`,
+      payload: {
+        status
+      }
+    })
     // assert: response should be the updated todo object
+    expect(response.statusCode).toBe(200)
+    expect(JSON.parse(response.body).todo).toStrictEqual(updatedTodo)
   })
 
   test('Given an invalid ID, When receive a PUT /api/v1/todos/:id request, Then it should response with status code 404', async () => {
     // arrange: mock the repo function to return null
+    const id = '999'
+    vi.spyOn(TodoRepo, 'updateTodoById').mockImplementation(async () => null)
 
     // act: receive a PUT /api/v1/todos/:id request
+    const response = await server.inject({
+      method: 'PUT',
+      url: `/api/v1/todos/${id}`,
+      payload: {
+        status: false
+      }
+    })
 
     // assert: response should with status code 404
-
+    expect(response.statusCode).toBe(404)
+    expect(JSON.parse(response.body)).toStrictEqual({ msg: `Not Found Todo:${id}` })
   })
 })
